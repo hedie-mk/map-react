@@ -1,0 +1,594 @@
+.bi {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+.bi-house-door-fill-nav-menu {
+    margin-left:10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-house-door-fill' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z'/%3E%3C/svg%3E");
+}
+/*---------------- Main Layout ----------------*/
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+.sidebar {
+  background-color: #2563eb;
+  justify-content: center;
+  direction: rtl;
+  color: white;
+}
+
+.top-row {
+  background-color: #2563eb;
+  color: white;
+  font-family: 'Vazir-bold';
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 3.5rem;
+  box-shadow: 0 10px 20px rgba(37,99,235,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.top-row a,
+.top-row .btn-link {
+  text-decoration: none;
+  color: white;
+  margin-left: 1.5rem;
+  white-space: nowrap;
+}
+
+.top-row a:hover,
+.top-row .btn-link:hover {
+  text-decoration: underline;
+}
+
+.top-row a:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navbar-brand {
+    font-size: 1.1rem;
+    font-family: 'Vazir-bold';
+}
+@media (max-width: 640.98px) {
+  .top-row {
+    justify-content: space-between;
+  }
+  .top-row a,
+  .top-row .btn-link {
+    margin-left: 0;
+  }
+  .container-fluid {
+    display: flex;
+    justify-content: end !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .page {
+    flex-direction: row;
+  }
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+  .top-row {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .top-row.auth a:first-child {
+    flex: 1;
+    text-align: right;
+    width: 0;
+  }
+  .top-row,
+  article {
+    padding-left: 2rem !important;
+  }
+}
+
+/*---------------- Navbar ----------------*/
+.navbar-toggler {
+  appearance: none;
+  cursor: pointer;
+  width: 3.5rem;
+  height: 2.5rem;
+  color: white;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.navbar-toggler:checked {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-scrollable {
+  display: none;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable {
+  display: block;
+}
+
+@media (min-width: 641px) {
+  .navbar-toggler {
+    display: none;
+  }
+  .nav-scrollable {
+    display: block;
+    height: calc(100vh - 3.5rem);
+    overflow-y: auto;
+  }
+}
+
+/*---------------- Nav Items ----------------*/
+.nav-item {
+  font-size: 1rem;
+  font-family: 'Vazir-Medium';
+  padding: 0.5rem 0;
+  color: white;
+}
+
+.nav-item:first-of-type {
+  padding-top: 1rem;
+}
+
+.nav-item:last-of-type {
+  padding-bottom: 1rem;
+}
+
+.nav-item .nav-link {
+  color: #d7d7d7;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  line-height: 3rem;
+  width: 100%;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-item .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.37);
+  color: white;
+}
+
+.nav-item .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/*---------------- Map Page ----------------*/
+.map-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 30px;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.section-title {
+  margin: 16px 0 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/*---------------- Directions Panel ----------------*/
+#directions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 360px;
+  max-width: 100%;
+  height: 100%;
+  background: #ffffff;
+  padding: 16px;
+  padding-top: 0;
+  overflow-y: auto;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.12);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+  z-index: 1000;
+  direction: rtl;
+}
+
+#directions .directions-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  z-index: 10;
+}
+
+#directions #close-directions {
+  background: #f3f4f6;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+}
+
+#directions #close-directions:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+#directions h3 {
+  font-family: "Vazir-bold";
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Directions toggle button for mobile */
+#open-directions {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(37,99,235,0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#open-directions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(37,99,235,0.45);
+}
+
+/* Route summary & directions list */
+#route-summary,  #directions-list {
+  font-family: "Vazir-Medium";
+  
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+#route-distance {
+    font-family: "Vazir-Medium";
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    
+}
+#directions-list {
+  list-style: none;
+  margin: 0;
+}
+
+#directions-list li {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  border-right: 2px solid #2563eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+#directions-list li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* Loading Overlay */
+#loading-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255,255,255,0.7);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#loading-overlay .spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #2563eb;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Theme Toggle Form */
+.theme-toggle-form {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1002;
+  background: rgba(255,255,255,0.9);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.form-switch{
+    padding-left:2.7rem !important;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  #directions {
+    width: 100%;
+    height: 55%;
+    bottom: 0;
+    top: auto;
+    transform: translateY(100%);
+    border-radius: 16px 16px 0 0;
+  }
+
+  #open-directions {
+    display: block;
+  }
+
+  .map-container {
+    height: 90%;
+  }
+}
+
+/*---------------- Dark Mode ----------------*/
+.dark body,
+.dark .page,
+.dark main,
+.dark .map-container,
+.dark #map {
+  background-color: #111827;
+  color: #cbd5e1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar & top row */
+.dark .top-row {
+  background-color: #1e293b;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.dark .navbar-toggler {
+  color: #cbd5e1;
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  background-color: rgba(203, 213, 225, 0.05);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark .navbar-toggler:checked {
+  background-color: rgba(203, 213, 225, 0.1);
+}
+
+/* Sidebar & nav items */
+.dark .sidebar {
+  background-color: #1f2937;
+  color: #cbd5e1;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark .nav-item a {
+  color: #cbd5e1;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark .nav-item a.active {
+  background-color: rgba(203, 213, 225, 0.2);
+  color: #ffffff;
+}
+
+.dark .nav-item a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Top-row links */
+.dark .top-row a,
+.dark .top-row .btn-link {
+  color: #cbd5e1;
+}
+
+/* Buttons */
+.dark .theme-toggle-btn,
+.dark #open-directions,
+.dark .btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 1px solid #1d4ed8;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.dark .theme-toggle-btn:hover,
+.dark #open-directions:hover,
+.dark .btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* MapLibre map */
+.dark .maplibregl-map {
+  --ml-c-bg-1: #111725;
+  --ml-c-bg-2: #414853;
+  --ml-c-bg-3: #32363f;
+  --ml-c-icon-1: #cbd5e1;
+  --ml-c-icon-2: #ffffff;
+  --ml-c-link-1: #cbd5e1;
+  --ml-c-link-2: #ffffff;
+  --ml-c-logo-1: #111725;
+  --ml-c-logo-2: #32363f;
+  --ml-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px 2px -1px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+/* Sections and titles */
+.dark .section-title {
+  color: #cbd5e1;
+}
+
+/* Directions panel */
+.dark #directions {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.5);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.dark #directions .directions-header {
+  background-color: #1e293b;
+  border-bottom: 1px solid #374151;
+}
+
+.dark #directions #close-directions {
+  background-color: #374151;
+  color: #cbd5e1;
+}
+
+.dark #directions #close-directions:hover {
+  background-color: #1f2937;
+}
+
+.dark #directions h3 {
+  color: #ffffff;
+}
+
+/* Route summary and directions list */
+
+.dark #route-distance {
+    font-family: "Vazir-Medium";
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: #f9fafb;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.dark #route-summary,
+.dark #directions-list li {
+  background-color: #1f2937;
+  border-right: 2px solid #f9fafb;
+  color: #cbd5e1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.dark #directions-list li:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+/* Loading overlay */
+.dark #loading-overlay {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.dark #loading-overlay .spinner {
+  border: 6px solid #374151;
+  border-top: 6px solid #2563eb;
+}
+
+/* Smooth transitions for all key elements */
+.dark .map-container,
+.dark #directions,
+.dark #route-summary,
+.dark #directions-list li,
+.dark #open-directions,
+.dark .theme-toggle-btn {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+
+
+/*---------------------Address popup--------------------------*/
+.maplibregl-popup-content{
+    max-width: 220px;
+    background-color:  #ffffff!important; 
+    color:rgba(37, 99, 235, 0.95) !important ;
+    font-family: "Vazir-Medium", sans-serif;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    line-height: 1.4;
+    text-align: right; /* important for RTL */
+    word-break: break-word;
+}
+.maplibregl-popup-close-button{
+  color: rgba(37, 99, 235, 0.95);
+  border-radius: 5px !important;
+}
+
+
+
+.route-summary-block {
+  margin-bottom: 12px;
+}
+
+.route-summary-address div {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
