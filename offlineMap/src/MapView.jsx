@@ -19,8 +19,9 @@ export default function MapView({
     end,
     routeGeoJson,
     onMapClick,
-    popup,
-    setPopup
+    popup = null,
+    setPopup,
+    renderPopup
  }){
     return(
         <Map
@@ -31,7 +32,7 @@ export default function MapView({
                 zoom: 13
             }}
             style={{ width: '100%', height: '100%' ,position: "absolute"}}
-            onClick={e => onMapClick(e.lngLat)}
+            onClick={e => onMapClick?.(e.lngLat)}
             renderWorldCopies={false}
         >
             <NavigationControl />
@@ -47,11 +48,16 @@ export default function MapView({
 
             <FitBounds geojson={routeGeoJson} />
 
-            <AddressPopup
-                coords={popup?.coords}
-                address={popup?.address}
-                onClose={() => setPopup(null)}
-            />
+            {renderPopup
+            ? renderPopup({ popup, close: () => setPopup?.(null) })
+            : popup && typeof setPopup === 'function' && (
+                <AddressPopup
+                    coords={popup.coords}
+                    address={popup.address}
+                    onClose={() => setPopup(null)}
+                />
+                )
+            }
         </Map>
     )
 }

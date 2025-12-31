@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react';
-import MapView from '../components/map/MapView';
+import MapView from '../MapView';
 import { useRouting } from '../hooks/useRouting';
 import { useReverseGeocode } from '../hooks/useReverseGeocode';
 import { useRouteFromUrl } from '../hooks/useRouteFromUrl';

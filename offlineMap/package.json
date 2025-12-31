@@ -1,30 +1,39 @@
 {
-  "name": "package",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@myWays/map-view",
+  "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "main": "dist/map-view-lib.umd.cjs",
+  "module": "dist/map-view-lib.js",
+  "exports": {
+    ".": {
+      "import": "./dist/map-view-lib.js",
+      "require": "./dist/map-view-lib.umd.cjs"
+    }
   },
-  "dependencies": {
+  "files": ["dist"],
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
     "@vis.gl/react-maplibre": "^8.1.0",
-    "maplibre-gl": "^5.15.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.11.0"
+    "maplibre-gl": "^5.15.0"
   },
   "devDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@vis.gl/react-maplibre": "^8.1.0",
+    "maplibre-gl": "^5.15.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.4",
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-    "vite": "^7.2.4"
+    "globals": "^16.5.0"
   }
 }
