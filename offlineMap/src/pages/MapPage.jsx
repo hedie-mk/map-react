@@ -38,12 +38,6 @@ export default function MapPage() {
     document.body.classList.toggle('dark', dark);
   }, [dark]);
 
-
-
-  async function onMapClick(lngLat) {
-    await handleMapClick(lngLat);
-
-  }
   useEffect(() => {
     if (!start) return;
 
@@ -57,33 +51,14 @@ export default function MapPage() {
   }, [end]);
 
   useEffect(() => {
-    if (start && startAddress) {
-      setPopup({ coords: start, address: startAddress });
-    }
-  }, [startAddress]);
-
-  useEffect(() => {
     if (end && endAddress) {
       setPopup({ coords: end, address: endAddress });
+    } else if (start && startAddress) {
+      setPopup({ coords: start, address: startAddress });
     }
-  }, [endAddress]);
+  }, [start, end, startAddress, endAddress]);
 
 
-
-
-  const formatAddress = (addr) => {
-    if (!addr) return '';
-    let html = '';
-    if (addr.building) html += `<strong>ساختمان:</strong> ${addr.building}<br>`;
-    if (addr.street) html += `<strong>کوچه/خیابان:</strong> ${addr.street}` + (addr.houseNumber ? ` #${addr.houseNumber}` : "") + "<br>";
-    if (addr.mainRoad) html += `<strong>خیابان اصلی:</strong> ${addr.mainRoad}<br>`;
-    if (addr.neighborhood) html += `<strong>محله:</strong> ${addr.neighborhood}<br>`;
-    if (addr.district) html += `<strong>ناحیه:</strong> ${addr.district}<br>`;
-    if (addr.city) html += `<strong>شهر:</strong> ${addr.city}<br>`;
-    if (addr.postalCode) html += `<strong>کد پستی:</strong> ${addr.postalCode}<br>`;
-    if (addr.nearby) html += `<strong>نزدیک:</strong> ${addr.nearby}<br>`;
-    return html;
-  };
 
   return (
     <div className="map-container" style={{ display: 'flex', height: '80vh' }}>
@@ -97,12 +72,12 @@ export default function MapPage() {
                 start={start}
                 end={end}
                 routeGeoJson={routeGeoJson}
-                onMapClick={onMapClick}
+                onMapClick={handleMapClick}
                 popup={popup}
                 setPopup={setPopup}
             />
         </div>
-
+        {/* Theme toggel */}
         <div className="theme-toggle-form">
             <form className="d-flex align-items-center">
                 
